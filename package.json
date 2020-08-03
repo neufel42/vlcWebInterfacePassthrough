@@ -1,0 +1,11 @@
+{
+  "name": "vlcWebInterfacePassthrough",
+  "version": "1.0.0",
+  "main": "vlcInterface.js",
+  "author": "Dave Neufeld <dave.neufeld@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "btoa": "^1.2.1",
+    "node-fetch": "^2.6.0"
+  }
+}
