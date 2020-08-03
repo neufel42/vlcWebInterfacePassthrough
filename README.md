@@ -12,6 +12,10 @@
 * pl_next
 * pl_previous
 * fullscreen (toggles fullscreen)
+* in_play&input=file:///home/david/projects/iptv/src/sources/detroit.m3u
+* volume&val=256 (100%)
+* volume&val=512 (200%)  
+* seek&val=48%
 
 # TODO - Convert payload from xml to json (load special urls as well)
 * http://localhost:8080/requests/playlist_jstree.xml 
