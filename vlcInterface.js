@@ -46,6 +46,11 @@ function startServer() {
         }
         
         let url = vlcEndpoint + '/requests/status.xml?command=' + command;
+
+        if (command === 'playlist') {
+            url = vlcEndpoint + '/requests/playlist_jstree.xml';
+        }
+
         console.info('fetching url', url);
         fetch(url, {
             method: 'GET',

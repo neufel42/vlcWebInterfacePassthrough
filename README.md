@@ -16,6 +16,4 @@
 * volume&val=256 (100%)
 * volume&val=512 (200%)  
 * seek&val=48%
-
-# TODO - Convert payload from xml to json (load special urls as well)
-* http://localhost:8080/requests/playlist_jstree.xml 
+* playlist  (calls => http://localhost:8080/requests/playlist_jstree.xml)
