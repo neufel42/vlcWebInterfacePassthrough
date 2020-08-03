@@ -7,6 +7,7 @@ var listeningPort = 8181;
 var vlcEndpoint = 'http://localhost:8080';
 var vlcPassword = process.argv[2]; // Third argument is the password `node vlcInterface.js {vlcPassword}`
 var vlcUserName = ''; // VLC username is always blank
+var contentType = 'text/json'; // Default to json
 
 let url = vlcEndpoint + '/requests/status.xml';
 console.info('Testing VLC connection', url);
@@ -16,6 +17,14 @@ fetch(url, {
 })
     .then(response => {        
         console.info('VLC Response', response.url, response.status, response.statusText);
+
+        return response.text();        
+    })
+    .then(body => {                    
+        // Dump some data on how the output will look
+        console.info('test json', getBody(contentType, body));
+        console.info('test xml', body);
+
         // Able to start server
         startServer();
     })
@@ -30,9 +39,7 @@ function startServer() {
     http.createServer(function (req, res) {
 
         var command = req.url;
-        command = command.substr(1); // Strip '/' from the beginning    
-    
-        var contentType = 'text/json'; // Default to json
+        command = command.substr(1); // Strip '/' from the beginning            
 
         if (!req.headers['accept'].includes('json') && req.headers['accept'].includes('xml')) {
             contentType = 'text/xml';
@@ -64,6 +71,8 @@ function startServer() {
                 res.end();
             });
     }).listen(listeningPort); 
+
+    console.info('VLC Web server passthrough listenting on port ' + listeningPort);
 }
 
 /**
@@ -73,10 +82,10 @@ function startServer() {
  * @param {string} contentType 
  * @param {string} xmlBody 
  */
-function getBody(contentType, xmlBody) {
+function getBody(contentType, xmlBody) {    
     if (contentType.includes('json')) {
         // Convert xml to json        
-        var json = convert.xml2json(xmlBody);
+        var json = convert.xml2json(xmlBody, {compact: true});
         var jsonObject = JSON.parse(json);
 
         // xml2json is a bit verbose
@@ -86,5 +95,3 @@ function getBody(contentType, xmlBody) {
 
     return xmlBody;
 }
-
-console.log('VLC Web server passthrough listenting on port ' + listeningPort);
