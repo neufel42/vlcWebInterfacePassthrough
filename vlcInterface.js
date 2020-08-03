@@ -16,7 +16,7 @@ http.createServer(function (req, res) {
     var contentType = 'text/json'; // Default to json
 
     if (!req.headers['accept'].includes('json') && req.headers['accept'].includes('xml')) {
-        contentType = 'text/json';
+        contentType = 'text/xml';
     }
     
     let url = vlcEndpoint + '/requests/status.xml?command=' + command;
