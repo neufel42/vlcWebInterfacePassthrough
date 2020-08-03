@@ -1,7 +1,7 @@
 # VLC Web Interface Passthrough
 
 * A very simple node web server to pass commands to vlc web interface (to avoid CORs)
-* run `node vlcInterface.js` 
+* run `node vlcInterface.js {vlcPassword}` 
 * http://localhost:8181/{command} will map to http://localhost:8080/requests/status.xml?command={command}
 
 # Basic commands

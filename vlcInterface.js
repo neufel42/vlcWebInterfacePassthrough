@@ -4,8 +4,8 @@ var btoa = require('btoa');
 
 var listeningPort = 8181;
 var vlcEndpoint = 'http://localhost:8080';
-var vlcPassword = process.argv[2]; // Second argument is the password
-var vlcUserName = '';
+var vlcPassword = process.argv[2]; // Third argument is the password `node vlcInterface.js {vlcPassword}`
+var vlcUserName = ''; // VLC username is always blank
 
 http.createServer(function (req, res) {
 
